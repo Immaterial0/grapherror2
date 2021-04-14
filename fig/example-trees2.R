@@ -9,7 +9,7 @@ files <- list.files(
   full.names = TRUE
   )
 estimates <- lapply(files, readRDS)
-names(estimates) <- gsub(".+estimates/|\\.rds$", "", files)
+names(estimates) <- gsub(".+/(mcmc|mle)", "\\1", files)
 
 # Getting the tree names -------------------------------------------------------
 tree_names <- sapply(estimates[[4]]$dat, function(i) {
@@ -64,7 +64,7 @@ t.test(pss_unif, pss_beta, paired = TRUE)
 
 op0 <- par(mai = rep(0, 4))
 graphics.off()
-pdf(paste("fig/",'k',"example-trees-good1.pdf"), width = 9, height = 6)
+pdf(paste("fig/",'k',"example-trees-good2.pdf"), width = 9, height = 6)
 plot(
   x          = estimates$mcmc_partially_annotated_no_prior,
   which.tree = 32,
